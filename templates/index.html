@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sua Saúde +</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1>Escolha seu objetivo</h1>
+        <form method="POST" action="/resultado">
+            <select name="objetivo" required>
+                <option value="">--Selecione --</option>
+                <option value="Emagrecer">Emagrecer</option>
+                <option value="Ganhar massa muscular">Ganhar massa muscular</option>
+            </select>
+            <button type="submit">Gerar Plano</button>
+        </form>
+    </div>
+
+    <div class="agua-container" 
+     data-agua-total="{{ agua_total }}" 
+     data-meta-diaria="{{ meta_agua }}">
+
+    <h2>Controle de Consumo de Água</h2>
+
+    <form action="/adicionar_agua" method="POST">
+        <label for="ml">Quantos mL de água você bebeu?</label>
+        <input type="number" id="ml" name="ml" min="1" required>
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <p>Total de água ingerida hoje: <strong>{{ agua_total }} mL</strong></p>
+
+   
+    <form action="/definir_meta" method="POST">
+        <label for="meta">Defina sua meta diária (mL):</label>
+        <input type="number" id="meta" name="meta" min="1" value="{{ meta_agua }}" required>
+        <button type="submit">Atualizar Meta</button>
+    </form>
+
+    <p>Meta diária atual: <strong>{{ meta_agua }} mL</strong></p>
+
+    <div class="progress-container" aria-label="Progresso de consumo de água">
+        <div id="progressBar" class="progress-bar">0%</div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/javajs.js') }}"></script>
+
+</body>
+</html>
