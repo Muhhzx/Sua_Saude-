@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico de Consumo de Água</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Histórico de Consumo de Água</h1>
+
+        <h2>Consumo Diário</h2>
+        {% if consumos %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Quantidade (mL)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for consumo in consumos %}
+                    <tr>
+                        <td>{{ consumo.data.strftime('%d/%m/%Y') }}</td>
+                        <td>{{ consumo.quantidade }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Nenhum consumo registrado ainda.</p>
+        {% endif %}
+
+        <h2>Metas Diárias</h2>
+        {% if metas %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Meta (mL)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for meta in metas %}
+                    <tr>
+                        <td>{{ meta.data.strftime('%d/%m/%Y') }}</td>
+                        <td>{{ meta.quantidade }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Nenhuma meta registrada ainda.</p>
+        {% endif %}
+
+        <a href="{{ url_for('agua.index') }}" class="btn-historico">Voltar</a>
+    </div>
+</body>
+</html>
