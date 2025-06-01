@@ -3,6 +3,7 @@ from datetime import date
 from models.meta_agua import MetaAgua
 from models.consumo_agua import ConsumoAgua
 from extensions import db
+from sqlalchemy import func
 
 agua_bp = Blueprint('agua', __name__)
 
@@ -55,7 +56,7 @@ def definir_meta():
     except ValueError:
         return "Erro: valor inválido para meta", 400
 
-    # Atualiza ou cria
+   
     meta_existente = MetaAgua.query.filter_by(data=date.today()).first()
     if meta_existente:
         meta_existente.meta = meta
@@ -69,6 +70,24 @@ def definir_meta():
 
 @agua_bp.route('/historico')
 def historico():
-    consumos = ConsumoAgua.query.order_by(ConsumoAgua.data.desc()).all()
-    metas = MetaAgua.query.order_by(MetaAgua.data.desc()).all()
-    return render_template('historico.html', consumos=consumos, metas=metas)
+   consumos_agrupados = db.session.query(
+       ConsumoAgua.data,
+       func.sum(ConsumoAgua.quantidade).label('total_consumido')
+   ).group_by(ConsumoAgua.data).order_by(ConsumoAgua.data.desc()).all()
+
+   metas = MetaAgua.query.all()
+   metas_dict = {meta.data: meta.meta for meta in metas}
+
+   historico = []
+   for consumo in consumos_agrupados:
+       data = consumo.data
+       total_consumido = consumo.total_consumido
+       meta = metas_dict.get(data)
+       historico.append({
+           'data': data,
+           'total_consumido' : total_consumido,
+           'meta': meta
+       })
+
+       consumos = ConsumoAgua.query.order_by(ConsumoAgua.data.desc()).all()
+       return render_template('historico.html', historico = historico, consumos=consumos, metas=metas)

@@ -1,5 +1,5 @@
 from flask import Blueprint, request, render_template
-from planner import gerar_plano_simples  
+from planner import gerar_plano_simples 
 
 plano_bp = Blueprint('plano', __name__)
 

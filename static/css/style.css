@@ -51,7 +51,7 @@ button:hover {
     background-color: #004d40;
 }
 
-/* Barra de progresso */
+
 
 .progress-container {
     width: 100%;
@@ -71,18 +71,67 @@ button:hover {
     border-radius: 25px;
     transition: width 0.5s ease-in-out;
 }
-.btn-historico {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 18px;
-    background-color: #007BFF;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-.btn-historico:hover {
-    background-color: #0056b3;
+ .historico body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f4f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
 
+.historico .container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.historico h1, 
+.historico h2 {
+    color: #2c7a7b;
+    margin-bottom: 20px;
+}
+
+.historico table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 40px;
+}
+
+.historico th, 
+.historico td {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.historico th {
+    background-color: #2c7a7b;
+    color: white;
+    border-radius: 8px 8px 0 0;
+}
+
+.historico tr:nth-child(even) {
+    background-color: #f7fafc;
+}
+
+.historico .btn-voltar {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #3182ce;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.historico .btn-voltar:hover {
+    background: #2b6cb0;
+}
+
+.historico .section {
+    margin-bottom: 50px;
+}

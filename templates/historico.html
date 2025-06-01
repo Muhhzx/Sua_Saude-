@@ -6,11 +6,33 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="container">
+    <div class="historico">
         <h1>Histórico de Consumo de Água</h1>
 
-        <h2>Consumo Diário</h2>
-        {% if consumos %}
+        <div class="section">
+            <h2>Resumo Diário</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Total Consumido (mL)</th>
+                        <th>Meta (mL)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in historico %}
+                    <tr>
+                        <td>{{ item.data.strftime('%d/%m/%Y') }}</td>
+                        <td>{{ item.total_consumido }}</td>
+                        <td>{% if item.meta %}{{ item.meta }}{% else %}Não definida{% endif %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Consumos Detalhados</h2>
             <table>
                 <thead>
                     <tr>
@@ -27,12 +49,10 @@
                     {% endfor %}
                 </tbody>
             </table>
-        {% else %}
-            <p>Nenhum consumo registrado ainda.</p>
-        {% endif %}
+        </div>
 
-        <h2>Metas Diárias</h2>
-        {% if metas %}
+        <div class="section">
+            <h2>Metas Detalhadas</h2>
             <table>
                 <thead>
                     <tr>
@@ -44,16 +64,14 @@
                     {% for meta in metas %}
                     <tr>
                         <td>{{ meta.data.strftime('%d/%m/%Y') }}</td>
-                        <td>{{ meta.quantidade }}</td>
+                        <td>{{ meta.meta }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-        {% else %}
-            <p>Nenhuma meta registrada ainda.</p>
-        {% endif %}
+        </div>
 
-        <a href="{{ url_for('agua.index') }}" class="btn-historico">Voltar</a>
+        <a href="{{ url_for('agua.index') }}" class="btn-voltar">Voltar</a>
     </div>
 </body>
 </html>
