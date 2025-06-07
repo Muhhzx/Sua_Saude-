@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>Sua Saúde +</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <link rel="png" href="{{ url_for('static', filename='img/sua_saude') }}" type="png">
 </head>
 <body>
+    <div class="logo"> <img src="/static/css/img/sua_saude.png" alt="logo"></div>
+
     <div class="container">
         <h1>Escolha seu objetivo</h1>
         <form method="POST" action="/resultado">
