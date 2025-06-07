@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #1b667b;
+    background-color: #b8b5b5;
     color: #004d40;
     margin: 0;
     padding: 20px;
@@ -151,7 +151,7 @@ button:hover {
 }
 
 .logo {
-    position: fixed;
+    position: relative;
     top: 0px;
     left: 0px;
     z-index: 100;
