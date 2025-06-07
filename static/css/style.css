@@ -164,7 +164,7 @@ button:hover {
 
 /* Mantive seu estilo intacto, agora só ajustando para responsividade mínima */
 
-@media (max-width: 480px) {
+@media (max-width: 470px) {
     /* Container ocupa quase toda a largura, com padding mantido */
     .container, .agua-container {
         max-width: 100%;
